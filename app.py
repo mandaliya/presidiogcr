@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from presidio_analyzer import AnalyzerEngine
 from presidio_anonymizer import AnonymizerEngine
@@ -24,4 +25,6 @@ def anonymize_text():
     return jsonify({"anonymized_text": anonymized_text.text})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    # Use the PORT environment variable provided by Cloud Run
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port)
