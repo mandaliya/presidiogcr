@@ -1,20 +1,22 @@
-# Use an official Python runtime as the base image
-FROM python:3.9-slim
+# requirements.txt
+flask
 
-# Set the working directory in the container
+# Dockerfile
+FROM python:3.9
 WORKDIR /app
-
-# Copy the requirements file into the container
 COPY requirements.txt .
-
-# Install the dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the rest of the application code
+RUN pip install -r requirements.txt
 COPY . .
-
-# Expose the port that the app runs on
-EXPOSE 8080
-
-# Command to run the app
 CMD ["python", "app.py"]
+
+# app.py
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello, Flask in Docker!"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
