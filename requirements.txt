@@ -1,0 +1,5 @@
+streamlit
+presidio-analyzer
+presidio-anonymizer
+presidio-anonymizer
+spacy
