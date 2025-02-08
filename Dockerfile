@@ -13,8 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
-# Expose the port that Streamlit runs on
+# Expose the port that the app runs on
 EXPOSE 8080
 
-# Command to run the Streamlit app
-CMD ["streamlit", "run", "app.py", "--server.port=8080", "--server.address=0.0.0.0"]
+# Command to run the app
+CMD ["python", "app.py", "--port=8080"]  
